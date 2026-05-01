@@ -58,7 +58,7 @@ For corporate environments building towards strict compliance frameworks (e.g., 
 * **Strict Firewalling:** Storage Account Network Rules configured to Deny All by default.
 * **Zero-Trust Ready:** Hardened Terraform configuration ready for production.
 
-🛒 **[Get the Enterprise VNet Edition here](https://woitzik-cloud.lemonsqueezy.com/checkout/buy/53472bd3-e9da-4554-8766-eba1ba760ba5)**
+🛒 **Enterprise VNet Edition:** The automated Lemon Squeezy checkout is currently undergoing final compliance checks. Until the store is fully live, please email me directly for access or a demo: **david@woitzik.dev**
 
 **License Options:** Available for Single Organizations and as a Multi-Client License for IT Consultants/MSPs.
 
