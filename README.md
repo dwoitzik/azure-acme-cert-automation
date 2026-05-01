@@ -57,12 +57,17 @@ of architecture and security hardening work**.
 | Feature | Free Edition | Enterprise Edition |
 |---|---|---|
 | Automated Let's Encrypt via Acmebot | ✅ | ✅ |
-| Public Endpoints | ✅ | ❌ replaced by Private Link |
+| Entra ID App Registration (Terraform-managed) | ✅ | ✅ |
+| System-Assigned Managed Identity | ✅ | ✅ |
+| RBAC Zero-Trust (DNS + Key Vault) | ✅ | ✅ |
+| Serverless / Consumption Plan (Y1) | ✅ | ❌ |
+| Dedicated App Service Plan (B1, always-on) | ❌ | ✅ |
 | VNet Integration | ❌ | ✅ |
-| Azure Private Link (Storage & Key Vault) | ❌ | ✅ |
+| Private Endpoints (Storage, Key Vault, Function) | ❌ | ✅ |
 | Default-Deny Firewall Rules | ❌ | ✅ |
-| Entra ID App Registration (Terraform-managed) | ❌ | ✅ |
-| `variables.tf` & `outputs.tf` for team integration | ❌ | ✅ |
+| No Public Network Access | ❌ | ✅ |
+| HTTP/2 + FTPS Disabled + SCM Restricted | ❌ | ✅ |
+| Private DNS Zone VNet Links | ❌ | ✅ |
 
 ### Pricing
 
