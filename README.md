@@ -46,21 +46,39 @@ terraform apply
 ```
 Once deployed, visit the Function App URL provided in the Terraform outputs to access the Acmebot Dashboard and configure your first certificate.
 
-## 🏢 Looking for Enterprise Isolation? (Zero-Trust VNet Edition)
+## 🏢 Enterprise VNet Edition
 
-This public repository is designed for fast, cost-effective deployments using public Azure endpoints.
+For corporate environments targeting strict compliance frameworks (e.g., **ISO 27001, KRITIS, NIS2**),
+the Enterprise VNet Edition delivers a fully hardened, zero-trust architecture — saving you **4–8 hours
+of architecture and security hardening work**.
 
-For corporate environments building towards strict compliance frameworks (e.g., ISO 27001, KRITIS), I offer the **Enterprise VNet Edition** of this architecture.
+### What's Included
 
-**The Enterprise Edition includes:**
-* **Complete Network Isolation:** Deployed entirely within your Virtual Network using VNet Integration.
-* **Private Endpoints:** Azure Storage and Key Vault are accessed strictly via Azure Private Link. No public internet access.
-* **Strict Firewalling:** Storage Account Network Rules configured to Deny All by default.
-* **Zero-Trust Ready:** Hardened Terraform configuration ready for production.
+| Feature | Free Edition | Enterprise Edition |
+|---|---|---|
+| Automated Let's Encrypt via Acmebot | ✅ | ✅ |
+| Public Endpoints | ✅ | ❌ replaced by Private Link |
+| VNet Integration | ❌ | ✅ |
+| Azure Private Link (Storage & Key Vault) | ❌ | ✅ |
+| Default-Deny Firewall Rules | ❌ | ✅ |
+| Entra ID App Registration (Terraform-managed) | ❌ | ✅ |
+| `variables.tf` & `outputs.tf` for team integration | ❌ | ✅ |
 
-🛒 **Enterprise VNet Edition:** The automated Lemon Squeezy checkout is currently undergoing final compliance checks. Until the store is fully live, please email me directly for access or a demo: **david@woitzik.dev**
+### Pricing
 
-**License Options:** Available for Single Organizations and as a Multi-Client License for IT Consultants/MSPs.
+| License | Price | For whom |
+|---|---|---|
+| **Single Organization** | €49 one-time | One deployment, one company |
+| **Multi-Client / MSP** | €149 one-time | Unlimited deployments across clients |
+
+Both licenses include the full Terraform source code and any future updates to this module.
+The MSP license does **not** permit redistribution or resale of the code itself.
+
+### Get Access
+
+> 📩 **[Request access or a demo → david@woitzik.dev](mailto:david@woitzik.dev?subject=Enterprise%20VNet%20Edition%20-%20License%20Request)**
+>
+> Automated checkout coming soon. Current turnaround: **< 24 hours**.
 
 ---
 📧 **Contact:** david@woitzik.dev | 🌐 **GitHub:** @dwoitzik
