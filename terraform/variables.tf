@@ -33,7 +33,7 @@ variable "dns_zone_id" {
 variable "tags" {
   type        = map(string)
   description = "A mapping of tags to assign to the resources."
-  default     = {
+  default = {
     ManagedBy = "Terraform"
     Project   = "Acmebot-Automation"
   }

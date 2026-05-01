@@ -1,12 +1,12 @@
 # 🔒 Azure ACME Certificate Automation (Serverless)
 
-An automated, serverless Infrastructure-as-Code (IaC) deployment to manage Let's Encrypt certificates natively in Azure Key Vault. 
+An automated, serverless Infrastructure-as-Code (IaC) deployment to manage Let's Encrypt certificates natively in Azure Key Vault.
 
 This repository contains the Terraform automation required to deploy a fully functional, zero-maintenance certificate bot.
 
 ## 🚀 Overview
 
-Managing SSL/TLS certificates manually is a security risk and an operational burden. This module deploys an automated ACME client into your Azure environment using a cost-effective Serverless (Consumption) architecture. 
+Managing SSL/TLS certificates manually is a security risk and an operational burden. This module deploys an automated ACME client into your Azure environment using a cost-effective Serverless (Consumption) architecture.
 
 **Core Features:**
 * **Fully Automated:** Automatic issuance and renewal of Let's Encrypt certificates.
@@ -15,7 +15,7 @@ Managing SSL/TLS certificates manually is a security risk and an operational bur
 * **Zero-Trust Identity:** Uses System-Assigned Managed Identities for Key Vault and DNS Zone access. No hardcoded credentials.
 
 ## ⚙️ The Engine: Powered by Acmebot
-The underlying application logic of this deployment is powered by the excellent open-source [Acmebot](https://github.com/shibayan/keyvault-acmebot) engine by Polymind. 
+The underlying application logic of this deployment is powered by the excellent open-source [Acmebot](https://github.com/shibayan/keyvault-acmebot) engine by Polymind.
 
 While Polymind provides the core C# application that interacts with the Let's Encrypt API, this repository provides the **Terraform Infrastructure wrapper** to securely deploy, configure, and maintain the surrounding Azure ecosystem (Storage, Key Vault, IAM, and App Service Plans).
 
