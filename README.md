@@ -81,9 +81,9 @@ The MSP license does **not** permit redistribution or resale of the code itself.
 
 ### Get Access
 
-> 📩 **[Request access or a demo → david@woitzik.dev](mailto:david@woitzik.dev?subject=Enterprise%20VNet%20Edition%20-%20License%20Request)**
+> 🚀 **[Get the Enterprise VNet Edition →](https://woitzik-cloud.lemonsqueezy.com)**
 >
-> Automated checkout coming soon. Current turnaround: **< 24 hours**.
+> Full source code, default-deny network configs, and Entra ID automation included. Ready to deploy and pass your next audit.
 
 ---
 📧 **Contact:** david@woitzik.dev | 🌐 **GitHub:** @dwoitzik
