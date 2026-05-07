@@ -81,7 +81,7 @@ The MSP license does **not** permit redistribution or resale of the code itself.
 
 ### Get Access
 
-> 🚀 **[Get the Enterprise VNet Edition →](https://woitzik-cloud.lemonsqueezy.com)**
+> 🚀 **[Get the Enterprise VNet Edition →](https://woitzik-cloud.lemonsqueezy.com/checkout/buy/9ba80f4b-ce9c-40bf-a831-e012b538da8b)**
 >
 > Full source code, default-deny network configs, and Entra ID automation included. Ready to deploy and pass your next audit.
 
