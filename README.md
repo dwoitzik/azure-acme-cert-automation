@@ -14,6 +14,14 @@ Managing SSL/TLS certificates manually is a security risk and an operational bur
 * **Cost-Optimized:** Utilizes the Azure App Service `Y1` (Consumption) tier, meaning you only pay for the compute seconds used during renewals (typically resulting in $0.00 monthly compute costs).
 * **Zero-Trust Identity:** Uses System-Assigned Managed Identities for Key Vault and DNS Zone access. No hardcoded credentials.
 
+## 📖 Deep Dive
+
+Read the full technical breakdown of the hardening architecture, including step-by-step VNet Integration and Private Link configuration:
+
+**[Hardening Azure Acmebot for ISO 27001 & NIS2 Compliance →](https://woitzik.dev/blog/hardening-azure-acmebot-iso27001)**
+
+---
+
 ## ⚙️ The Engine: Powered by Acmebot
 The underlying application logic of this deployment is powered by the excellent open-source [Acmebot](https://github.com/shibayan/keyvault-acmebot) engine by Polymind.
 
