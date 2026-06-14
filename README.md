@@ -1,5 +1,7 @@
 # 🔒 Azure ACME Certificate Automation (Serverless)
 
+[![CI](https://github.com/dwoitzik/azure-acme-cert-automation/actions/workflows/tf-linter.yml/badge.svg)](https://github.com/dwoitzik/azure-acme-cert-automation/actions/workflows/tf-linter.yml)
+
 An automated, serverless Infrastructure-as-Code (IaC) deployment to manage Let's Encrypt certificates natively in Azure Key Vault.
 
 This repository contains the Terraform automation required to deploy a fully functional, zero-maintenance certificate bot.
