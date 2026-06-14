@@ -1,32 +1,45 @@
-name: Terraform Lint and Validate
+name: Terraform Lint and Security Scan
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   terraform-checks:
-    name: 'Terraform Code Quality'
+    name: "Terraform Quality & Security"
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
 
-    - name: Terraform Format Check
-      id: fmt
-      run: terraform fmt -check
-      continue-on-error: true
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
 
-    - name: Terraform Init
-      id: init
-      run: terraform init -backend=false
+      - name: Terraform Init
+        run: terraform init -backend=false
 
-    - name: Terraform Validate
-      id: validate
-      run: terraform validate -no-color
+      - name: Terraform Validate
+        run: terraform validate -no-color
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v4
+
+      - name: TFLint
+        run: tflint --chdir=.
+
+      - name: Checkov Security Scan
+        uses: bridgecrewio/checkov-action@v12
+        with:
+          directory: terraform
+          framework: terraform
+          quiet: true
+          hard_fail_on: HIGH,CRITICAL

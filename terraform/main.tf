@@ -38,12 +38,38 @@ resource "azuread_application_password" "acmebot" {
 ## ===========================================================
 
 resource "azurerm_storage_account" "acmebot_storage" {
-  name                     = "stacmebot${lower(var.environment)}${random_string.suffix.result}"
-  resource_group_name      = azurerm_resource_group.rg.name
-  location                 = var.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-  tags                     = var.tags
+  #checkov:skip=CKV_AZURE_59:   Public network access is required for the Consumption plan (no VNet integration). Private Endpoint isolation is included in the Enterprise Edition — woitzik.dev/templates
+  #checkov:skip=CKV_AZURE_190:  Public blob access is disabled via allow_nested_items_to_be_public — this check is a false positive.
+  #checkov:skip=CKV_AZURE_206:  LRS replication is sufficient for cert automation workloads. ZRS/GRS is available in the Enterprise Edition.
+  #checkov:skip=CKV2_AZURE_33:  Private Endpoint for storage requires VNet integration, included in the Enterprise Edition — woitzik.dev/templates
+  #checkov:skip=CKV2_AZURE_40:  Function App requires Shared Key access via storage_account_access_key — MSI-based storage auth is not supported by azurerm_windows_function_app.
+  #checkov:skip=CKV2_AZURE_41:  SAS expiration policy is not applicable — the storage account relies on the Function App's MSI, not SAS tokens.
+  #checkov:skip=CKV2_AZURE_47:  Anonymous blob access is implicitly disabled; no public containers are created.
+  #checkov:skip=CKV2_AZURE_1:   Customer-Managed Key encryption is out of scope for this base module.
+  name                            = "stacmebot${lower(var.environment)}${random_string.suffix.result}"
+  resource_group_name             = azurerm_resource_group.rg.name
+  location                        = var.location
+  account_tier                    = "Standard"
+  account_replication_type        = "LRS"
+  min_tls_version                 = "TLS1_2"
+  allow_nested_items_to_be_public = false
+  tags                            = var.tags
+
+  blob_properties {
+    delete_retention_policy {
+      days = 7
+    }
+  }
+
+  queue_properties {
+    logging {
+      delete                = true
+      read                  = true
+      write                 = true
+      version               = "1.0"
+      retention_policy_days = 7
+    }
+  }
 }
 
 resource "random_string" "suffix" {
@@ -53,6 +79,9 @@ resource "random_string" "suffix" {
 }
 
 resource "azurerm_service_plan" "acmebot_plan" {
+  #checkov:skip=CKV_AZURE_211: Y1 Consumption plan is intentional for serverless cert automation. Production P1v3 with zone balancing is included in the Enterprise Edition — woitzik.dev/templates
+  #checkov:skip=CKV_AZURE_212: Minimum instance count is not applicable to Consumption plans.
+  #checkov:skip=CKV_AZURE_225: Zone redundancy is not supported on Consumption plans.
   name                = "asp-acmebot-${var.environment}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
@@ -66,13 +95,18 @@ resource "azurerm_service_plan" "acmebot_plan" {
 ## ===========================================================
 
 resource "azurerm_key_vault" "acmebot_kv" {
-  name                      = "kv-acmebot-${var.environment}-${random_string.suffix.result}"
-  location                  = var.location
-  resource_group_name       = azurerm_resource_group.rg.name
-  tenant_id                 = data.azurerm_client_config.current.tenant_id
-  sku_name                  = "standard"
-  enable_rbac_authorization = true
-  tags                      = var.tags
+  #checkov:skip=CKV_AZURE_109:  KV network firewall rules require VNet integration, included in the Enterprise Edition — woitzik.dev/templates
+  #checkov:skip=CKV_AZURE_189:  Public network access is required for the Consumption plan (no VNet). Private Endpoint isolation is included in the Enterprise Edition.
+  #checkov:skip=CKV2_AZURE_32:  Private Endpoint for Key Vault requires VNet integration, included in the Enterprise Edition — woitzik.dev/templates
+  name                       = "kv-acmebot-${var.environment}-${random_string.suffix.result}"
+  location                   = var.location
+  resource_group_name        = azurerm_resource_group.rg.name
+  tenant_id                  = data.azurerm_client_config.current.tenant_id
+  sku_name                   = "standard"
+  enable_rbac_authorization  = true
+  soft_delete_retention_days = 90
+  purge_protection_enabled   = true
+  tags                       = var.tags
 }
 
 ## ===========================================================
@@ -84,7 +118,8 @@ resource "azurerm_windows_function_app" "acmebot" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
 
-  service_plan_id            = azurerm_service_plan.acmebot_plan.id
+  service_plan_id = azurerm_service_plan.acmebot_plan.id
+  #checkov:skip=CKV_AZURE_221: Public network access is required for the Consumption plan (no VNet integration). Private Endpoint isolation is included in the Enterprise Edition — woitzik.dev/templates
   storage_account_name       = azurerm_storage_account.acmebot_storage.name
   storage_account_access_key = azurerm_storage_account.acmebot_storage.primary_access_key
   https_only                 = true
