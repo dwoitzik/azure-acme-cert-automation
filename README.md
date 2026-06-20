@@ -42,15 +42,20 @@ While Polymind provides the core C# application that interacts with the Let's En
 git clone https://github.com/dwoitzik/azure-acme-cert-automation.git
 cd azure-acme-cert-automation/terraform
 ```
-**2. Initialize Terraform**
+**2. Configure your variables**
+```bash
+cp terraform.tfvars.example terraform.tfvars
+# edit terraform.tfvars with your acme_contact_email and dns_zone_id
+```
+**3. Initialize Terraform**
 ```bash
 terraform init
 ```
-**3. Run the plan to review the resources**
+**4. Run the plan to review the resources**
 ```bash
 terraform plan
 ```
-**4. Deploy the infrastructure**
+**5. Deploy the infrastructure**
 ```bash
 terraform apply
 ```

@@ -1,0 +1,10 @@
+resource_group_name = "rg-acmebot-test"
+location            = "westeurope"
+environment         = "prod"
+acme_contact_email  = "admin@yourcompany.com"
+dns_zone_id         = "/subscriptions/.../resourceGroups/rg-network/providers/Microsoft.Network/dnszones/yourdomain.com"
+
+tags = {
+  ManagedBy = "Terraform"
+  Project   = "Acmebot-Automation"
+}

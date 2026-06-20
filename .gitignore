@@ -25,3 +25,6 @@ override.tf.json
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
 *tfplan*
+
+# Module repo — lock file should not be committed for a reusable module
+**/.terraform.lock.hcl
